@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border header-transparent">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Viaje</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/conductor-home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  
+  <div class="box-sup">
+    <h1 class="titulo">¿A dónde vamos?</h1>
+  </div>
+  <ion-card>
+    <ion-card-content [formGroup]="viajeForm">
+
+      <ion-item>
+        <ion-input formControlName="origen" label="Origen" labelPlacement="floating" readonly></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input
+          formControlName="destino"
+          label="Destino"
+          labelPlacement="floating"
+          placeholder="Ej: Avenida Siempre Viva 742"
+          (ionInput)="buscarDirecciones($event)"
+        ></ion-input>
+      </ion-item>
+      
+      <ion-list *ngIf="autocompleteItems.length > 0">
+        <ion-item *ngFor="let item of autocompleteItems" (click)="seleccionarDireccion(item)">
+          {{ item.description }}
+        </ion-item>
+      </ion-list>
+      
+      <ion-item>
+        <ion-label position="floating">Fecha</ion-label>
+        <ion-input type="text" formControlName="fecha" 
+                   (ionChange)="fechaToString($event.target.value)"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input formControlName="hora" label="Hora" labelPlacement="floating" placeholder="Ej: 14:00 p.m."></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input formControlName="valor" type="number"  label="Costo" labelPlacement="floating" placeholder="Ej: 10000"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-select formControlName="capacidad" label="Capacidad" labelPlacement="floating" placeholder="Seleccionar...">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+    <ion-card-content class="mini-card">
+      <ion-button expand="block" color="primary" (click)="registerViaje()">Comienza tu viaje</ion-button>
+      <ion-button expand="block" color="danger" routerLink="/conductor-home">Cancelar</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <app-toolbar-cond></app-toolbar-cond>
+</ion-footer>

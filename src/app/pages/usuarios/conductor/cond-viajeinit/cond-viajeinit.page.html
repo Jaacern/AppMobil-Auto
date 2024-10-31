@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border header-transparent">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">QR Viaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="box-sup">
+    <h1 class="titulo">Viaje Creado!</h1>
+    <p class="titulo">Muestra tu código QR a los pasajeros!</p>
+  </div>
+  <div class="box-med">
+    <qr-code class="img-qr" [value]="qrValue" size="200" errorCorrectionLevel="M"></qr-code>
+  </div>
+  
+  <ion-card *ngIf="viaje">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Pasajeros</ion-label>
+      </ion-list-header>
+      
+      <!-- Listar los pasajeros del viaje -->
+      <ion-item *ngFor="let pasajero of pasajeros">
+        <ion-label>{{ pasajero.nombre | titlecase }} {{ pasajero.apellido | titlecase }} <br><p>{{ pasajero.estado | titlecase }}</p></ion-label>
+        <ion-button color="danger" slot="end" (click)="eliminarPasajero(pasajero.id)">
+          Eliminar
+        </ion-button>
+      </ion-item>
+      
+      <!-- Si no hay pasajeros -->
+      <ion-item *ngIf="pasajeros.length === 0">
+        <ion-label>No hay pasajeros aún</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <div class="button-container">
+    <ion-button expand="full" color="primary" (click)="empezarViaje()">Empezar Viaje</ion-button>
+    <ion-button expand="full" color="danger" (click)="cancelarViaje()">Cancelar Viaje</ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-toolbar-cond></app-toolbar-cond>
+</ion-footer>

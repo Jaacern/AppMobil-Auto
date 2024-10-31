@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border header-transparent">
+  <ion-toolbar class="toolbar-transparent">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/pj-profile">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="mapId" style="height: 100%; width: 100%;">
+</ion-content>
+
+<ion-card-concent>
+  <h2 class="tit-adm">
+    Viaje en curso
+  </h2>
+  <ion-button color="danger" (click)="cancelarViaje()">Cancelar Viaje</ion-button>
+</ion-card-concent>
+
+<ion-footer>
+  <app-toolbar-pas></app-toolbar-pas>
+</ion-footer>

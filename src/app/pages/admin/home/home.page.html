@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border header-transparent">
+    <ion-toolbar class="toolbar-transparent">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button  routerLink="/perfil-admin">
+          <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+    <div class="box-sup">
+      <p class="titulo">Hola!</p>
+      <h1 class="nombre-usuario">{{ nombreUsuario }} {{ apellUsuario }}</h1>
+    </div>
+    <div class="box-med">
+      <h5 class="titulo-cont">Últimos viajes en la aplicación</h5>
+      <swiper-container>
+        <swiper-slide *ngFor="let aux of viajes">
+          <ion-card routerLink="/adm-viajes" >
+            <img class="img-map" src="{{ aux.imagenmapa }}" />
+            <ion-card-header>
+              <ion-card-title class="direccion-viaje"> {{ aux.destino }} </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-card-subtitle>{{ aux.fecha }} {{ aux.hora }}</ion-card-subtitle>
+              <ion-card-subtitle>CLP {{ aux.costo }}</ion-card-subtitle>
+            </ion-card-content>
+          </ion-card>
+        </swiper-slide>
+      </swiper-container>
+      <h5 class="titulo-adm">Administración</h5>
+      <div class="adm">
+        <ion-card class="mini-card" routerLink="/lista-pas">
+          <ion-card-content>
+            <h2 class="tit-adm">Administrar Pasajeros</h2>
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="mini-card" routerLink="/lista-cond">
+          <ion-card-content>
+            <h2 class="tit-adm">Administrar Conductores</h2>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <ion-card class="mini-card" routerLink="/viajes">
+        <ion-card-content>
+          <h2 class="tit-adm">Administrar Viajes</h2>
+        </ion-card-content>
+      </ion-card>
+    </div>
+</ion-content>
+
+<ion-footer>
+  <app-toolbar-adm></app-toolbar-adm>
+</ion-footer>
